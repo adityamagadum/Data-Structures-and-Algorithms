@@ -1,2 +1,26 @@
 hio this is aditya
 mm
+//initialize Repo (first time only)
+git init
+
+Connect to GitHub (first time only)
+git remote add origin https://github.com/your-username/repo-name.git
+
+// to add the files only adds non empty files
+git add .
+
+//tells what will be added
+git status
+
+//we can give name the what chnages we have made
+git commit -m "Added folder structure"
+
+// upload to GitHub
+git push origin main
+
+
+//to get from the website of github
+git pull origin main
+//first time 
+git push -u origin main
+
