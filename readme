@@ -24,3 +24,5 @@ git pull origin main
 //first time 
 git push -u origin main
 
+//Which GitHub repository is connected to your local project”
+git remote -v
