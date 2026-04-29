@@ -15,14 +15,14 @@ a[0],a[2],a[4] has blown k=1 (minimum  flower in an boque)
 and as k=1 we can make 3 boque
 if the k=2 then boque was not possible becz the flower should be conscative
 */
-//brute force
+//optimal by binary search
 #include<bits/stdc++.h>
 using namespace std;
 
 class MiniNoOfDaysForBOuqets
 {
     public:
-    bool possibleorNOT(vector<int>& v1,int day,int m,int k){
+    int  possibleorNOT(vector<int>& v1,int day,int m,int k){
         int cnt=0;
         int NoOfBq=0;
         for(int i=0;i<v1.size();i++){
@@ -35,8 +35,7 @@ class MiniNoOfDaysForBOuqets
             }
         }
         NoOfBq+=(cnt/k);
-        if(NoOfBq>=m) return 1;
-        else return 0;
+        return NoOfBq;
     }
     int maxelement(vector<int>& v) {
         int n=v.size();
@@ -60,15 +59,28 @@ class MiniNoOfDaysForBOuqets
     }
     int mindays(vector<int>& v1, int m, int k){
         int n=v1.size();
+
         if(n<m*k) return -1;
-        int min=minelement(v1);
-        int max=maxelement(v1);
 
-        for(int i=min;i<=max;i++){
-            if(possibleorNOT(v1,i,m,k)) return i;
+        int low=minelement(v1);
+        int high=maxelement(v1);
 
+        int ans=0;
+
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(possibleorNOT(v1,mid,m,k)>=m){
+                ans=mid;
+                high=mid-1; 
+            }
+            else{
+                low=mid+1;
+            }
         }
-        return -1;
+
+
+
+        return ans;
 
     }
 
