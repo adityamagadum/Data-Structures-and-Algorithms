@@ -1,3 +1,17 @@
+/*
+Koko Eating Bananas (Binary Search on Arrays)
+Given an array piles[] where each element is bananas in a pile, and h hours.
+Koko eats at speed k bananas per hour, one pile per hour.
+Time for each pile = (piles[i] + k - 1) / k.
+Total time = sum of time for all piles.
+We need minimum k such that total time <= h.
+Search range: k from 1 to max(piles).
+Use binary search to find smallest valid k.
+Example: piles = [30,11,23,4,20], h = 6.
+k = 23 works (total time = 6), k = 22 fails (total time = 7).
+*/
+
+
 #include<bits/stdc++.h>
 using namespace std;
 class Solution {
