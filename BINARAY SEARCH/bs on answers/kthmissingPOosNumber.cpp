@@ -15,21 +15,28 @@
 // Output: 6
 // Explanation: The missing positive integers are [5,6,7,...]. The 2nd missing positive integer is 6.
 
-//brute force
+//optimal force
 #include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
 public:
     int findKthPositive(vector<int>& arr, int k) {
-        for (int i = 0; i < arr.size(); i++) {
-            if (arr[i] <= k) {
-                k++;
+        int low = 0;
+        int high = arr.size() - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int missing = arr[mid] - (mid + 1);
+
+            if (missing < k) {
+                low = mid + 1;
             } else {
-                break;
+                high = mid - 1;
             }
         }
-        return k;
+
+        return k + low;
     }
 };
 
