@@ -1,0 +1,70 @@
+//median of sorted array
+// Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+
+// The overall run time complexity should be O(log (m+n)).
+
+
+// Example 1:
+
+// Input: nums1 = [1,3], nums2 = [2]
+// Output: 2.00000
+// Explanation: merged array = [1,2,3] and median is 2.
+// Example 2:
+
+// Input: nums1 = [1,2], nums2 = [3,4]
+// Output: 2.50000
+// Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& v1, vector<int>& v2) {
+        if(v2.size()<v1.size()) {
+            return findMedianSortedArrays(v2,v1);
+            
+        }
+            int n1=v1.size();
+            int n2=v2.size();
+
+            int low=0;int high=n1;
+            while(low<=high){
+                int cut1=(low+high)>>1;
+                int cut2=(n1+n2+1)/2-cut1;
+
+                int left1=cut1==0?INT_MIN:v1[cut1-1];
+                int left2=cut2==0?INT_MIN:v2[cut2-1];
+
+                int right1=cut1==n1?INT_MAX:v1[cut1];
+                int right2=cut2==n2?INT_MAX:v2[cut2];
+
+                if(left1<=right2 && left2<=right1){
+                    if((n1+n2)%2==0)
+                    {
+                        return (max(left1,left2)+min(right1,right2))/2.0;
+                    }
+                    else{
+                        return max(left1,left2);
+                    
+                    }
+                }
+                else if(left1>right2){
+                    high=cut1-1;
+                }
+                else{
+                    low=cut1+1;
+                }
+            }
+
+    return 0.0;
+        
+    }
+};
+int main(){
+    vector<int> v1={1,3};
+    vector<int> v2={2};
+
+    Solution s1;
+    cout<<s1.findMedianSortedArrays(v1,v2);
+
+    return 0;
+}
