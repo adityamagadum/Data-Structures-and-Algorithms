@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* next;
+    Node* back;
+    Node(int data1,Node* next1,Node* back1){
+        data=data1;
+        next=next1;
+        back=back1;
+    }
+    Node(int data1){
+        data=data1;
+        next=nullptr;
+        back=nullptr;
+    }
+
+};
+Node* CONVERTarrayTODLL(vector<int> &arr){
+    Node* head=new Node(arr[0]);
+    Node* prev=head;
+    for(int i=1;i<arr.size();i++){
+        Node* temp=new Node(arr[i]);
+        temp->back=prev;
+        prev->next=temp;
+        prev=temp;
+
+    }
+    return head;
+ 
+}
+void displayForward(Node* head) {
+    Node* temp = head;
+    cout << "Forward List: ";
+    while (temp != nullptr) {
+        cout << temp->data << " <-> ";
+        temp = temp->next;
+    }
+    cout << "NULL" << endl;
+}
+Node* DeleteForward(Node* head)){
+    if(head==NULL)
+
+}
+int main(){
+    vector<int> arr={1,2,3,4,5};
+    Node* head=CONVERTarrayTODLL(arr);\
+    displayForward(head);
+    
+
+    return 0;
+}
